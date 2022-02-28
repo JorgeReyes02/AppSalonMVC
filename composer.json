@@ -1,0 +1,20 @@
+{
+    "name": "jorgereyes/appsalonmvc",
+    "description": "Aprendiendo MVC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models",
+            "Classes\\" : "./classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jorge Reyes Pacheco",
+            "email": "jorgereyeslira02@gmail.com"
+        }
+    ],
+    "require": {}
+}
