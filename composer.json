@@ -1,13 +1,11 @@
 {
-    "name": "jorgereyes/appsalonmvc",
-    "description": "Aprendiendo MVC",
-    "type": "project",
+    "name": "jorgereyes/appsalon",
+    "description": "Aprendiendo php",
     "autoload": {
         "psr-4": {
-            "MVC\\" : "./",
-            "Controllers\\" : "./controllers",
-            "Model\\" : "./models",
-            "Classes\\" : "./classes"
+            "MVC\\":"./",
+            "Controllers\\":"./controllers",
+            "Model\\":"./models"
         }
     },
     "authors": [
@@ -16,7 +14,5 @@
             "email": "jorgereyeslira02@gmail.com"
         }
     ],
-    "require": {
-        "phpmailer/phpmailer": "^6.6"
-    }
+    "require": {}
 }
