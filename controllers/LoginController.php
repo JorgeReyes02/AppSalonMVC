@@ -8,9 +8,17 @@ use MVC\Router;
 
 class LoginController{
     public static function login(Router $router) {
-        
+        $alertas = [];
+        $auth = new Usuario();
+
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            $auth = new Usuario($_POST);
+            $alertas = $auth->validarLogin();
+        }
+
         $router->render('auth/login', [
-            
+            'alertas'=>$alertas,
+            'auth'=>$auth
         ]);
     }
 
@@ -92,12 +100,14 @@ class LoginController{
             Usuario::setAlerta('error','Token no válido');
         }
         else{
-            //Modificar usuario confirmado
-            $usuario->confirmado = 1;
-            $usuario->token = null;
-            $usuario->guardar();
-
-            Usuario::setAlerta('exito',"Cuenta Verificada correctamente");
+           //cambiar valor de columna confirmado
+           $usuario->confirmado = '1';
+           //eliminar token
+           $usuario->token = '';
+           //Guardar y Actualizar 
+           $usuario->guardar();
+           //mostrar mensaje de exito
+           Usuario::setAlerta('exito', 'Cuenta verificada exitosamente...');
         }
         
         $alertas = Usuario::getAlertas();
