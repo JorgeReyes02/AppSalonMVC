@@ -2,7 +2,7 @@
 @use 'base/mixins' as m;
 
 .tabs{
-    @include m.tablet(){
+    @include m.tablet{
         display: flex;
     }
     button{
