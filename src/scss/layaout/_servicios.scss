@@ -15,7 +15,14 @@
         transition-property: transform;
         transition-duration: 300ms;
         text-align: center;
-        
+
+        &.seleccionado{
+            background-color: v.$azul;
+            p{
+                color: v.$blanco;
+            }   
+        }
+
         &:hover{
             transform: scale(1.1);
         }
@@ -28,7 +35,7 @@
            color: v.$azul;
            font-weight: v.$bold;
            font-size: 3rem;
-          margin: 0;
+           margin: 0;
        }
     }
 }
