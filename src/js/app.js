@@ -20,6 +20,9 @@ function iniciarApp(){
     paginaSiguiente();
     paginaAnterior();
 
+    //Consulta la API en el backend de php
+    consultarAPI();
+
 }
 
 function mostrarSeccion(){
@@ -92,4 +95,16 @@ function paginaSiguiente(){
         paso++;
         botonesPaginador();
     });
+}
+
+async function consultarAPI(){
+    try {
+        const url = 'http://localhost:3000/api/servicios';
+        const resultado = await fetch(url);
+        const servicios = await resultado.json();
+        console.log(servicios);
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
