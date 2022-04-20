@@ -1,6 +1,8 @@
 let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
+
+
 document.addEventListener('DOMContentLoaded', function(){
     iniciarApp();
     
@@ -102,9 +104,34 @@ async function consultarAPI(){
         const url = 'http://localhost:3000/api/servicios';
         const resultado = await fetch(url);
         const servicios = await resultado.json();
-        console.log(servicios);
+       mostrarServicios(servicios);
         
     } catch (error) {
         console.log(error);
     }
+}
+
+function mostrarServicios(servicios){
+    servicios.forEach(servicio => {
+        const {id,nombre,precio} = servicio;
+
+        const nombreServicio = document.createElement('p');
+        nombreServicio.classList.add('nombre-servicio');
+        nombreServicio.textContent = nombre;
+
+        const precioServicio = document.createElement('p');
+        precioServicio.classList.add('precio-servicio');
+        precioServicio.textContent = `$${precio}`;
+        
+        const servicioDiv = document.createElement('div');
+        servicioDiv.classList.add('servicio');
+        servicioDiv.dataset.idServicio = id;
+
+        servicioDiv.appendChild(nombreServicio);
+        servicioDiv.appendChild(precioServicio);
+
+        
+        document.querySelector('#servicios').appendChild(servicioDiv);
+        
+    });
 }
