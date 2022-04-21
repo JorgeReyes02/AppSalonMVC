@@ -186,8 +186,28 @@ function seleccionarFecha(){
         const dia = new Date(e.target.value).getUTCDay();
         if([6,0].includes(dia)){
             e.target.value = '';
+            mostrarAlerta('Fines de semana no permitidos','error');
         }else{
             cita.fecha = e.target.value;
         }
     });
+}
+
+function mostrarAlerta(mensaje,tipo){   
+    //Previene que se generen mas de una alerta
+    const alertaPrevia = document.querySelector('.alerta');
+    if(alertaPrevia) return;
+
+
+    const alerta = document.createElement('DIV');
+    alerta.textContent = mensaje;
+    alerta.classList.add('alerta');
+    alerta.classList.add(tipo);
+
+    const formulario = document.querySelector('#paso-2 .formulario');
+    formulario.appendChild(alerta);
+
+    setTimeout(() => {
+        alerta.remove();
+    }, 5000);
 }
