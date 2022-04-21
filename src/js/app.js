@@ -35,11 +35,14 @@ function iniciarApp(){
     //Añade el nombre del cliente al obejto cita
     nombreCliente();
 
-    //Añade la hora de la cita al objeto de cita
+    //Añade la fecha de la cita al objeto de cita
     seleccionarFecha();
 
     //Añade la hora de la cita en el objeto cita
     seleccionarHora();
+
+    //Muestra el resumen de la cita
+    mostratResumen();
 
 }
 
@@ -74,6 +77,8 @@ function tabs(){
 
             mostrarSeccion();
             botonesPaginador();
+
+            
         });
     });
 }
@@ -89,6 +94,7 @@ function botonesPaginador(){
     else if(paso===3){
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.add('ocultar');
+        mostratResumen();
     }else{
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.remove('ocultar');
@@ -189,7 +195,7 @@ function seleccionarFecha(){
         const dia = new Date(e.target.value).getUTCDay();
         if([6,0].includes(dia)){
             e.target.value = '';
-            mostrarAlerta('Fines de semana no permitidos','error');
+            mostrarAlerta('Fines de semana no permitidos','error','.formulario');
         }else{
             cita.fecha = e.target.value;
         }
@@ -203,7 +209,7 @@ function seleccionarHora(){
         const hora = horaCita.split(':')[0];
         if(hora < 10 || hora >20){
             e.target.value = " ";
-            mostrarAlerta('Hora no válida','error');
+            mostrarAlerta('Hora no válida','error','.formulario');
 
         }else{
             cita.hora = e.target.value;
@@ -212,10 +218,21 @@ function seleccionarHora(){
     });
 }
 
-function mostrarAlerta(mensaje,tipo){   
+function mostratResumen(){
+    const resumen = document.querySelector('contenido-resumen');
+   if(Object.values(cita).includes("") || cita.servicios.length === 0){
+       mostrarAlerta('Faltan datos de Serivicios, Fecha u Hora','error','.contenido-resumen',false);
+   }else{
+       console.log('todo bien');
+   }
+}
+
+function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){   
     //Previene que se generen mas de una alerta
     const alertaPrevia = document.querySelector('.alerta');
-    if(alertaPrevia) return;
+    if(alertaPrevia){
+        alertaPrevia.remove();
+    }
 
 
     const alerta = document.createElement('DIV');
@@ -223,10 +240,12 @@ function mostrarAlerta(mensaje,tipo){
     alerta.classList.add('alerta');
     alerta.classList.add(tipo);
 
-    const formulario = document.querySelector('#paso-2 .formulario');
-    formulario.appendChild(alerta);
-
-    setTimeout(() => {
-        alerta.remove();
-    }, 5000);
+    const referencia = document.querySelector(elemento);
+    referencia.appendChild(alerta);
+   
+    if(desaparece){
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000);
+    }
 }
