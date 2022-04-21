@@ -32,7 +32,11 @@ function iniciarApp(){
     //Consulta la API en el backend de php
     consultarAPI();
 
+    //Añade el nombre del cliente al obejto cita
     nombreCliente();
+
+    //Añade la hora de la cita al objeto de cita
+    seleccionarFecha();
 
 }
 
@@ -168,10 +172,22 @@ function seleccionarServicio(servicio){
     }
 
 
-    
+    console.log(cita);
 }
 
 function nombreCliente(){
     cita.nombre = document.querySelector('#nombre').value;
     
+}
+
+function seleccionarFecha(){
+    const inputFecha = document.querySelector('#fecha');
+    inputFecha.addEventListener('input',function (e){
+        const dia = new Date(e.target.value).getUTCDay();
+        if([6,0].includes(dia)){
+            e.target.value = '';
+        }else{
+            cita.fecha = e.target.value;
+        }
+    });
 }
