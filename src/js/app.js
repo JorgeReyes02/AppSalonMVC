@@ -42,7 +42,7 @@ function iniciarApp(){
     seleccionarHora();
 
     //Muestra el resumen de la cita
-    mostratResumen();
+    mostrarResumen();
 
 }
 
@@ -94,7 +94,7 @@ function botonesPaginador(){
     else if(paso===3){
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.add('ocultar');
-        mostratResumen();
+        mostrarResumen();
     }else{
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.remove('ocultar');
@@ -218,13 +218,52 @@ function seleccionarHora(){
     });
 }
 
-function mostratResumen(){
-    const resumen = document.querySelector('contenido-resumen');
+function mostrarResumen(){
+    const resumen = document.querySelector('.contenido-resumen');
+
+    //Limpiar el contenido de resumen
+    while(resumen.firstChild){
+        resumen.removeChild(resumen.firstChild);
+    }
+
+    
+    
    if(Object.values(cita).includes("") || cita.servicios.length === 0){
        mostrarAlerta('Faltan datos de Serivicios, Fecha u Hora','error','.contenido-resumen',false);
-   }else{
-       console.log('todo bien');
-   }
+        return;
+    }
+
+    const {nombre,fecha,hora,servicios} = cita;
+    const nombreCliente = document.createElement('P');
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+    const HoraCita = document.createElement('P');
+    HoraCita.innerHTML = `<span>Hora:</span> ${hora}`;
+
+    resumen.appendChild(nombreCliente);
+    resumen.appendChild(fechaCita);
+    resumen.appendChild(HoraCita);
+
+    servicios.forEach(servicio => {
+        const {id,nombre,precio} = servicio;
+        const contenedorServicio = document.createElement('DIV');
+        contenedorServicio.classList.add('contenedor-servicio');
+        
+        const textoServicio = document.createElement('P');
+        textoServicio.textContent = nombre;
+
+        const precioServicio = document.createElement('P');
+        precioServicio.innerHTML = `<span>Precio:</span> $${precio}`;
+
+        contenedorServicio.appendChild(textoServicio);
+        contenedorServicio.appendChild(precioServicio);
+
+        resumen.appendChild(contenedorServicio);
+    });
+   
 }
 
 function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){   
