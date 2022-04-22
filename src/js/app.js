@@ -243,9 +243,17 @@ function mostrarResumen(){
     const HoraCita = document.createElement('P');
     HoraCita.innerHTML = `<span>Hora:</span> ${hora}`;
 
+    const headingDatos = document.createElement('H3');
+    headingDatos.textContent = 'Resumen de Cita';
+    resumen.appendChild(headingDatos);
+   
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(HoraCita);
+
+    const headingServicios = document.createElement('H3');
+    headingServicios.textContent = 'Resumen de Servicios';
+    resumen.appendChild(headingServicios);
 
     servicios.forEach(servicio => {
         const {id,nombre,precio} = servicio;
