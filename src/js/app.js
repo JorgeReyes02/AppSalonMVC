@@ -254,20 +254,6 @@ function mostrarResumen(){
     const fechaFormateada = fechaUTC.toLocaleDateString('es',opciones);
     console.log(fechaFormateada);
 
-    const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
-
-    const HoraCita = document.createElement('P');
-    HoraCita.innerHTML = `<span>Hora:</span> ${hora}`;
-
-    const headingDatos = document.createElement('H3');
-    headingDatos.textContent = 'Resumen de Cita';
-    resumen.appendChild(headingDatos);
-   
-    resumen.appendChild(nombreCliente);
-    resumen.appendChild(fechaCita);
-    resumen.appendChild(HoraCita);
-
     const headingServicios = document.createElement('H3');
     headingServicios.textContent = 'Resumen de Servicios';
     resumen.appendChild(headingServicios);
@@ -283,12 +269,33 @@ function mostrarResumen(){
         const precioServicio = document.createElement('P');
         precioServicio.innerHTML = `<span>Precio:</span> $${precio}`;
 
+
         contenedorServicio.appendChild(textoServicio);
         contenedorServicio.appendChild(precioServicio);
 
         resumen.appendChild(contenedorServicio);
     });
+
+    const botonReservar = document.createElement('Button');
+        botonReservar.classList.add('boton','contenedor');
+        botonReservar.textContent = 'Reservar';
+        botonReservar.onclick = reservarCita;
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
+
+    const HoraCita = document.createElement('P');
+    HoraCita.innerHTML = `<span>Hora:</span> ${hora}`;
+
+    const headingDatos = document.createElement('H3');
+    headingDatos.textContent = 'Resumen de Cita';
+    resumen.appendChild(headingDatos);
    
+    resumen.appendChild(nombreCliente);
+    resumen.appendChild(fechaCita);
+    resumen.appendChild(HoraCita);
+    
+    resumen.appendChild(botonReservar);
 }
 
 function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){   
@@ -312,4 +319,8 @@ function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){
             alerta.remove();
         }, 3000);
     }
+}
+
+function reservarCita(){
+    console.log('Reservando');
 }
