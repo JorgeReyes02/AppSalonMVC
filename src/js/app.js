@@ -322,5 +322,8 @@ function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){
 }
 
 function reservarCita(){
-    console.log('Reservando');
+   const datos = new FormData();
+   datos.append('nombre','Jorge');
+
+//    console.log([...datos]);
 }
