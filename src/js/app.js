@@ -213,7 +213,7 @@ function seleccionarHora(){
 
         }else{
             cita.hora = e.target.value;
-            console.log(cita);
+            
         }
     });
 }
@@ -322,10 +322,22 @@ function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){
 }
 
 async function reservarCita(){
-   const datos = new FormData();
-   datos.append('nombre','Jorge');
+   const {nombre,fecha,hora,servicios} = cita;
 
-   //Peticion a la APO
+   const idServicios = servicios.map(servicio => servicio.id);
+   console.log(idServicios);
+   
+
+   const datos = new FormData();
+   datos.append('nombre',nombre);
+   datos.append('fecha',fecha);
+   datos.append('hora',hora);
+   datos.append('servicios',idServicios);
+
+//    console.log([...datos]);
+   
+
+   //Peticion a la API
    const url = 'http://localhost:3000/api/citas';
 
    const respuesta = await fetch(url,{
@@ -336,5 +348,5 @@ async function reservarCita(){
    const resultado = await respuesta.json();
    console.log(resultado);
 
-//    console.log([...datos]);
+  
 }
