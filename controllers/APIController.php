@@ -2,8 +2,9 @@
 namespace Controllers;
 
 use Model\Cita;
+use Model\CitasServicio;
 use Model\Servicio;
-use MVC\Router;
+
 
  class APIController{
 
@@ -13,10 +14,26 @@ use MVC\Router;
     }
 
     public static function guardar(){
-        $cita = new Cita($_POST);
-        $resultado =$cita->guardar();
-        
+        //Almacena la cita y devuelve el Id
+         $cita = new Cita($_POST);
+         $resultado =$cita->guardar();
+         $id = $resultado['id'];
 
-        echo json_encode($resultado);
+        //Almacena la Cita y el servicio con el Id
+        $idServicios = explode(",", $_POST['servicios']);
+        foreach($idServicios as $idServicio){
+            $args = [
+                'citaId' =>$id,
+                'servicioId' => $idServicio
+            ];
+
+            $citaServicio = new CitasServicio($args);
+            $citaServicio->guardar();
+        }
+        $respuesta = [
+            'resultado' => $resultado
+        ];
+
+        echo json_encode($respuesta);
     }
 }

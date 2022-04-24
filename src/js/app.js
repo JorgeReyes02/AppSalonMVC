@@ -334,8 +334,6 @@ async function reservarCita(){
    const {fecha,hora,id,servicios} = cita;
 
    const idServicios = servicios.map(servicio => servicio.id);
-   console.log(idServicios);
-   
 
    const datos = new FormData();
    datos.append('fecha',fecha);
