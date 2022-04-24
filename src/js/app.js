@@ -252,7 +252,7 @@ function mostrarResumen(){
     };
 
     const fechaFormateada = fechaUTC.toLocaleDateString('es',opciones);
-    console.log(fechaFormateada);
+    
 
     const headingServicios = document.createElement('H3');
     headingServicios.textContent = 'Resumen de Servicios';
@@ -321,9 +321,19 @@ function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){
     }
 }
 
-function reservarCita(){
+async function reservarCita(){
    const datos = new FormData();
    datos.append('nombre','Jorge');
+
+   //Peticion a la APO
+   const url = 'http://localhost:3000/api/citas';
+
+   const respuesta = await fetch(url,{
+       method: 'POST'
+   });
+
+   const resultado = await respuesta.json();
+   console.log(resultado);
 
 //    console.log([...datos]);
 }
