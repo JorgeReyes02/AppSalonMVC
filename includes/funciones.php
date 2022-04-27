@@ -20,3 +20,11 @@ function isAuth():void{
         header('Location:/');
     }
 }
+
+function esUltimo(string $actual, string $proximo): bool{
+    if($actual !== $proximo){
+        return true;
+    }else{
+        return false;
+    }
+}
