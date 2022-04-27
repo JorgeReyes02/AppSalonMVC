@@ -6,13 +6,22 @@ use MVC\Router;
 
 class AdminController{
     public static function index(Router $router){
-        date_default_timezone_set('America/Bogota');
-        $fecha = date('Y-m-d');
-       
+
         if(!isset($_SESSION)) 
         { 
             session_start(); 
         } 
+
+        date_default_timezone_set('America/Bogota');
+
+        $fecha = $_GET['fecha'] ?? date('Y-m-d');
+        $fechas = explode('-',$fecha);
+
+        if(!checkdate($fechas[1],$fechas[2],$fechas[0])){
+            header('Location:/404');
+        }
+        
+       
 
         //Consultar la base de Datos
 
