@@ -29,7 +29,8 @@ class LoginController{
                         } 
                          
                         $_SESSION['id'] = $usuario->id;
-                        $_SESSION['nombre'] = $usuario->nombre .    $usuario->apellido;
+                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                        
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['login'] = true;
 
@@ -56,7 +57,11 @@ class LoginController{
     }
 
     public static function logout() {
-       
+       session_start();
+
+       $_SESSION = [];
+
+       header('Location:/');
     }
 
     public static function olvide(Router $router) {

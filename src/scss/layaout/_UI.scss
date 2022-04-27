@@ -28,3 +28,17 @@
         text-align: center;
     }
 }    
+
+.barra{
+    margin:5rem 0;
+    @include m.tablet{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .boton{
+        @include m.boton(v.$rojo,v.$blanco);
+        margin: 0;
+        
+    }
+}
