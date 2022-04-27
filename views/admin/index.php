@@ -32,7 +32,7 @@
          $idCita = $cita->id;
         }//Fin de IF?> 
         <p class="servicio">  <?php echo $cita->servicio . " " . $cita->precio;?>  </p>
-       </li>
+       
         <?php  }// Fin foreach?> 
     </ul>
 </div>
