@@ -48,3 +48,7 @@
         <?php  }// Fin foreach?> 
     </ul>
 </div>
+
+<?php 
+    $script = "<script src='build/js/buscador.js'></script>"
+;?> 
