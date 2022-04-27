@@ -21,19 +21,25 @@ use Model\Servicio;
 
         //Almacena la Cita y el servicio con el Id
         $idServicios = explode(",", $_POST['servicios']);
+         
         foreach($idServicios as $idServicio){
             $args = [
-                'citaId' =>$id,
+                'citaId' => $id,
                 'servicioId' => $idServicio
             ];
 
+            
+             
+             
             $citaServicio = new CitasServicio($args);
+             
             $citaServicio->guardar();
+             
         }
-        $respuesta = [
-            'resultado' => $resultado
-        ];
+        
 
-        echo json_encode($respuesta);
+         
+
+        echo json_encode(['resultado' => $resultado]);
     }
 }

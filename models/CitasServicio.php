@@ -2,11 +2,11 @@
 namespace Model;
 
 class CitasServicio extends ActiveRecord{
-    protected static $tabla = 'citasservicios';
+    protected static $tabla = 'citasservcios';
     protected static $columnasDB = ['id','citaId','servicioId'];
 
     public $id;
-    public $icitaIdd;
+    public $citaId;
     public $servicioId;
 
     public function __construct($args = [])

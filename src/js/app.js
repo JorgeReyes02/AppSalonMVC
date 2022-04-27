@@ -304,7 +304,7 @@ function mostrarResumen(){
     resumen.appendChild(HoraCita);
     
     resumen.appendChild(botonReservar);
-    console.log(cita);
+    
 }
 
 function mostrarAlerta(mensaje,tipo,elemento,desaparece = true){   
@@ -355,6 +355,8 @@ async function reservarCita(){
     });
  
     const resultado = await respuesta.json();
+    
+    
     
     if(resultado.resultado){
      Swal.fire({
