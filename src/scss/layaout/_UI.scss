@@ -4,9 +4,13 @@
 .contenedor-app {
     @include m.tablet {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:1fr 2fr;
         min-height: 100vh;
     }
+
+    @include m.desktop { 
+        grid-template-columns: repeat(2,1fr);
+     }
 
     .imagen {
         height: 20rem;
@@ -22,6 +26,9 @@
         width: 95%;
         margin: 0 auto;
         padding: 3rem 0;
+        @include m.tablet {
+			overflow: scroll;
+		}
     }
 
     .descripcion-pagina{

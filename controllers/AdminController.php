@@ -21,13 +21,10 @@ class AdminController{
         $consulta .= " LEFT OUTER JOIN citasservcios ";
         $consulta .= " ON citasservcios.citaId=citas.id ";
         $consulta .= " LEFT OUTER JOIN servicios ";
-        $consulta .= " ON servicios.id=citasserv    cios.servicioId ";
+        $consulta .= " ON servicios.id=citasservcios.servicioId ";
         // $consulta .= " WHERE fecha =  '${fecha}' ";
         $citas = AdminCita::SQL($consulta);
-         echo '<pre>';
-         var_dump($citas);
-         echo '</pre>'; 
-        exit;
+         
 
 
         $router->render('admin/index',[
